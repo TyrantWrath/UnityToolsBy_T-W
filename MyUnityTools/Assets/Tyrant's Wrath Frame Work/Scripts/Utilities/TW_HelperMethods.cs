@@ -149,6 +149,34 @@ namespace TyrantsWrath.HelperMethods
         }
 
 
+        public static T[] GetComponentsAtCursorLocation2DNonAlloc<T>(
+            Vector3 positionToCheck, float radiusToCheck, LayerMask layersToCheck, int numberOfCollidersToTest)
+        {
+
+            List<T> componentList = new List<T>();
+            Collider2D[] collider2DArray = new Collider2D[numberOfCollidersToTest];
+            Physics2D.OverlapCircleNonAlloc(positionToCheck, radiusToCheck, collider2DArray, layersToCheck);
+
+            T tComponent = default(T);
+            T[] componentArray = new T[collider2DArray.Length];
+
+            for (int i = collider2DArray.Length - 1; i >= 0; i--)
+            {
+
+                if (collider2DArray[i] != null)
+                {
+                    tComponent = collider2DArray[i].gameObject.GetComponent<T>();
+                    if (tComponent != null)
+                    {
+                        componentArray[i] = tComponent;
+                    }
+                }
+
+            }
+            return componentArray;
+        }
+
+
         public static T[] GetComponentsAtCursorLocation3DNonAlloc<T>(
             Vector3 positionToCheck, float radiusToCheck, LayerMask layersToCheck, int numberOfCollidersToTest)
         {
