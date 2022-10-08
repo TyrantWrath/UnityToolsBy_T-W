@@ -78,9 +78,105 @@ namespace TyrantsWrath.HelperMethods
             return Mathf.RoundToInt(percentageAmount * 100f) + (includeSign ? "%" : "");
         }
         #endregion
-    
-    
-    
-        
+
+
+        #region Collect Components At A Given Position
+        public static bool GetComponentsAtCursorLocation2D<T>(out List<T> componentsAtPositionList, Vector3 positionToCheck)
+        {
+            bool found = false;
+
+            List<T> componentList = new List<T>();
+
+            Collider2D[] collider2DArray = Physics2D.OverlapPointAll(positionToCheck);
+
+            T tComponent = default(T);
+
+            for (int i = 0; i < collider2DArray.Length; i++)
+            {
+                tComponent = collider2DArray[i].gameObject.GetComponentInParent<T>();
+                if (tComponent != null)
+                {
+                    found = true;
+                    componentList.Add(tComponent);
+                }
+                else
+                {
+                    tComponent = collider2DArray[i].gameObject.GetComponentInChildren<T>();
+                    if (tComponent != null)
+                    {
+                        found = true;
+                        componentList.Add(tComponent);
+                    }
+                }
+            }
+
+            componentsAtPositionList = componentList;
+            return found;
+        }
+
+        public static bool GetComponentsAtCursorLocation3D<T>(
+            out List<T> componentsAtPositionList, Vector3 positionToCheck, float radiusToCheck, LayerMask layersToCheck)
+        {
+            bool found = false;
+
+            List<T> componentList = new List<T>();
+
+            Collider[] colliderArray = Physics.OverlapSphere(positionToCheck, radiusToCheck, layersToCheck);
+
+            T tComponent = default(T);
+
+            for (int i = 0; i < colliderArray.Length; i++)
+            {
+                tComponent = colliderArray[i].gameObject.GetComponentInParent<T>();
+                if (tComponent != null)
+                {
+                    found = true;
+                    componentList.Add(tComponent);
+                }
+                else
+                {
+                    tComponent = colliderArray[i].gameObject.GetComponentInChildren<T>();
+                    if (tComponent != null)
+                    {
+                        found = true;
+                        componentList.Add(tComponent);
+                    }
+                }
+            }
+
+            componentsAtPositionList = componentList;
+            return found;
+        }
+
+
+        public static T[] GetComponentsAtCursorLocation3DNonAlloc<T>(
+            Vector3 positionToCheck, float radiusToCheck, LayerMask layersToCheck, int numberOfCollidersToTest)
+        {
+
+            List<T> componentList = new List<T>();
+            Collider[] colliderArray = new Collider[numberOfCollidersToTest];
+            Physics.OverlapSphereNonAlloc(positionToCheck, radiusToCheck, colliderArray, layersToCheck);
+
+            T tComponent = default(T);
+            T[] componentArray = new T[colliderArray.Length];
+
+            for (int i = colliderArray.Length - 1; i >= 0; i--)
+            {
+
+                if (colliderArray[i] != null)
+                {
+                    tComponent = colliderArray[i].gameObject.GetComponent<T>();
+                    if (tComponent != null)
+                    {
+                        componentArray[i] = tComponent;
+                    }
+                }
+
+            }
+            return componentArray;
+        }
+
+        #endregion
+
     }
 }
