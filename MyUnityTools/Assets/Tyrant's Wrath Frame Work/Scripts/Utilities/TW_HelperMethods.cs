@@ -72,6 +72,15 @@ namespace TyrantsWrath.HelperMethods
                 case 11: return "December";
             }
         }
+
+        public static string GetPercentString(float percentageAmount, bool includeSign = true)
+        {
+            return Mathf.RoundToInt(percentageAmount * 100f) + (includeSign ? "%" : "");
+        }
         #endregion
+    
+    
+    
+        
     }
 }
