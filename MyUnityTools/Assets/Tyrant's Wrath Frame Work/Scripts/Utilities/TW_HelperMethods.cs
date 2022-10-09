@@ -38,6 +38,22 @@ namespace TyrantsWrath.HelperMethods
         {
             return UnityEngine.Random.Range(0, chanceMax) < chance;
         }
+
+        public static int CalculateAngleFromVector3(Vector3 dir)
+        {
+            dir = dir.normalized;
+            float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            if (n < 0) n += 360;
+            int angle = Mathf.RoundToInt(n);
+
+            return angle;
+        }
+
+        public static void ResetGameObjectPosition(Transform gameObjectTransform)
+        {
+            gameObjectTransform.position = Vector3.zero;
+        }
+
         #endregion
 
 
@@ -97,9 +113,65 @@ namespace TyrantsWrath.HelperMethods
             }
         }
 
+        public static string GetWeekDayName(int weekDay)
+        {
+            switch (weekDay)
+            {
+                default:
+                case 0: return "Monday";
+                case 1: return "Tuesday";
+                case 2: return "Wednesday";
+                case 3: return "Thursday";
+                case 4: return "Friday";
+                case 5: return "Saturday";
+                case 6: return "Sunday";
+            }
+        }
+
         public static string GetPercentString(float percentageAmount, bool includeSign = true)
         {
             return Mathf.RoundToInt(percentageAmount * 100f) + (includeSign ? "%" : "");
+        }
+        #endregion
+
+
+
+        #region Array & Lists Region
+
+        public static T GetRandomFromArray<T>(T[] array)
+        {
+            return array[UnityEngine.Random.Range(0, array.Length)];
+        }
+
+        public static T GetRandomFromList<T>(List<T> list)
+        {
+            return list[UnityEngine.Random.Range(0, list.Count)];
+        }
+
+        public static T[] RemoveDuplicatesFromArray<T>(T[] arrayName)
+        {
+            List<T> list = new List<T>();
+            foreach (T t in arrayName)
+            {
+                if (!list.Contains(t))
+                {
+                    list.Add(t);
+                }
+            }
+            return list.ToArray();
+        }
+
+        public static List<T> RemoveDuplicatesFromList<T>(List<T> listName)
+        {
+            List<T> list = new List<T>();
+            foreach (T t in listName)
+            {
+                if (!list.Contains(t))
+                {
+                    list.Add(t);
+                }
+            }
+            return list;
         }
         #endregion
 
