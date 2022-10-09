@@ -7,8 +7,6 @@ namespace TyrantsWrath.HelperMethods
     public static class TW_HelperMethods
     {
 
-
-
         #region Math Calculation Region
         public static bool TestChance(int chance, int chanceMax = 100)
         {
@@ -78,6 +76,7 @@ namespace TyrantsWrath.HelperMethods
             return Mathf.RoundToInt(percentageAmount * 100f) + (includeSign ? "%" : "");
         }
         #endregion
+
 
 
         #region Collect Components At A Given Position
