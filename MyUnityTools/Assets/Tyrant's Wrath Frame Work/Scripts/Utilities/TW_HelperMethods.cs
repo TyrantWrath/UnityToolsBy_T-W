@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace TyrantsWrath.HelperMethods
 {
@@ -217,6 +218,18 @@ namespace TyrantsWrath.HelperMethods
                 return mousePosition;
             }
 
+        }
+
+        private static PointerEventData pointerEventData;
+        private static List<RaycastResult> raycastResults;
+        public static bool IsMouseOverUI()
+        {
+            pointerEventData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+            raycastResults = new List<RaycastResult>();
+
+            EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+
+            return raycastResults.Count > 0;
         }
         #endregion
 
