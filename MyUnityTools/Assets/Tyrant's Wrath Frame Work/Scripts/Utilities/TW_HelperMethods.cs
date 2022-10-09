@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +5,33 @@ namespace TyrantsWrath.HelperMethods
 {
     public static class TW_HelperMethods
     {
+        #region  Camera Related Methods
+        public static void ShakeCamera(float intensity, float timer)
+        {
+            Vector3 lastCameraPosition = Vector3.zero;
+            timer -= Time.unscaledDeltaTime;
+            Vector3 randomMovement = new Vector3(
+                UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized * intensity;
+
+            Camera.main.transform.position = Camera.main.transform.position - lastCameraPosition + randomMovement;
+            lastCameraPosition = randomMovement;
+
+        }
+
+        public static void ShakeCamera(float intensity, float timer, Camera cameraToShake)
+        {
+            Vector3 lastCameraPosition = Vector3.zero;
+            timer -= Time.unscaledDeltaTime;
+            Vector3 randomMovement = new Vector3(
+                UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized * intensity;
+
+            cameraToShake.transform.position = cameraToShake.transform.position - lastCameraPosition + randomMovement;
+            lastCameraPosition = randomMovement;
+        }
+
+        #endregion
+
+
 
         #region Math Calculation Region
         public static bool TestChance(int chance, int chanceMax = 100)
