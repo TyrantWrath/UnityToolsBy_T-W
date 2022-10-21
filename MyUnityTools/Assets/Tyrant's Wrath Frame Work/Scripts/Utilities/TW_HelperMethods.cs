@@ -168,6 +168,11 @@ namespace TyrantsWrath.HelperMethods
             return UnityEngine.Random.Range(0, chanceMax) < chance;
         }
 
+        public static Vector3 GetRandomPositionWithinRectangle(float xMin, float xMax, float yMin, float yMax)
+        {
+            return new Vector3(UnityEngine.Random.Range(xMin, xMax), UnityEngine.Random.Range(yMin, yMax));
+        }
+
         public static int CalculateAngleFromVector3(Vector3 dir)
         {
             dir = dir.normalized;
