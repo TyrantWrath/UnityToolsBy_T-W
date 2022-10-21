@@ -172,7 +172,7 @@ namespace TyrantsWrath.HelperMethods
         {
             return new Vector3(UnityEngine.Random.Range(xMin, xMax), UnityEngine.Random.Range(yMin, yMax));
         }
-
+ 
         public static int CalculateAngleFromVector3(Vector3 dir)
         {
             dir = dir.normalized;
