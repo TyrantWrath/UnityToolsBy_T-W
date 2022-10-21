@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TyrantsWrath.HelperClasses
@@ -11,7 +9,6 @@ namespace TyrantsWrath.HelperClasses
         public static T Instance
         {
             get { return instance; }
-
         }
 
         protected virtual void Awake()

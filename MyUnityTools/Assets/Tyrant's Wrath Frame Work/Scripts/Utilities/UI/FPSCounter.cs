@@ -24,7 +24,6 @@ namespace TyrantsWrath.UserInterface
                 fpsText.text = Mathf.Ceil(fps).ToString();
                 timer = 0;
             }
-
         }
     }
 }

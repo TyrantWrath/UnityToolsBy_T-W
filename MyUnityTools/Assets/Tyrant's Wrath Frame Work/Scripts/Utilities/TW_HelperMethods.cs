@@ -6,8 +6,6 @@ namespace TyrantsWrath.HelperMethods
 {
     public static class TW_HelperMethods
     {
-
-
         #region Collect Components At A Given Position
         public static bool GetComponentsAtCursorLocation2D<T>(out List<T> componentsAtPositionList, Vector3 positionToCheck)
         {
