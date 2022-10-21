@@ -1,6 +1,6 @@
 namespace TyrantsWrath.InterfaceClasses
 {
-    public interface TW_IHealth
+    public interface IDamageable
     {
         void DealDamage(float damageAmount);
     }
