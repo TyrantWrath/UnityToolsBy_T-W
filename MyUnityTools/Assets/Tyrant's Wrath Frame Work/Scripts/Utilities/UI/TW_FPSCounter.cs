@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace TyrantsWrath.UserInterface
 {
-    public class ShowFPS : MonoBehaviour
+    public class TW_FPSCounter : MonoBehaviour
     {
         [SerializeField] private Text fpsText;
 
