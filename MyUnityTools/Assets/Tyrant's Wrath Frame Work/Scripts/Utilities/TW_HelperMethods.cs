@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace TyrantsWrath.HelperMethods
 {
@@ -172,7 +173,7 @@ namespace TyrantsWrath.HelperMethods
         {
             return new Vector3(UnityEngine.Random.Range(xMin, xMax), UnityEngine.Random.Range(yMin, yMax));
         }
- 
+
         public static int CalculateAngleFromVector3(Vector3 dir)
         {
             dir = dir.normalized;
@@ -321,6 +322,26 @@ namespace TyrantsWrath.HelperMethods
         }
         #endregion
 
+        #region UI Related Methods Region
 
+        public static void ClearAndSetDropDownData(Dropdown dropdown, List<string> dropDownNames)
+        {
+            dropdown.ClearOptions();
+
+            foreach (var item in dropDownNames)
+            {
+                dropdown.options.Add(new Dropdown.OptionData() { text = item });
+            }
+        }
+
+        public static void SetDropDownData(Dropdown dropdown, List<string> dropDownNames)
+        {
+            foreach (var item in dropDownNames)
+            {
+                dropdown.options.Add(new Dropdown.OptionData() { text = item });
+            }
+        }
+
+        #endregion
     }
 }
