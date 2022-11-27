@@ -189,6 +189,20 @@ namespace TyrantsWrath.HelperMethods
             gameObjectTransform.position = Vector3.zero;
         }
 
+        ///<summary>
+        ///Interval Methods Below Are Used To Caculate Overalapping Values
+        ///--------------(Parameters)------------
+        /// The Parameters Are The Numbers To Be Used In The Interval
+        ///</summary>
+
+        public static bool IsOverLappingInterval(int imin1, int imax1, int imin2, int imax2)
+        {
+            if (Mathf.Max(imin1, imin2) <= Mathf.Min(imax1, imax2))
+            {
+                return true;
+            }
+            return false;
+        }
         #endregion
 
 
